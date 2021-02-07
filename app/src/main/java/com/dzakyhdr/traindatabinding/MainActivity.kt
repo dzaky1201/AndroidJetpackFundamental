@@ -3,6 +3,7 @@ package com.dzakyhdr.traindatabinding
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.dzakyhdr.traindatabinding.databinding.ActivityMainBinding
 
@@ -17,15 +18,12 @@ class MainActivity : AppCompatActivity() {
         mainViewModelFactory = MainViewModelFactory(0)
         viewModel = ViewModelProvider(this, mainViewModelFactory).get(MainViewModel::class.java)
 
-        binding.txtResult.text = viewModel.currentNumber().toString()
+        viewModel.count.observe(this, {
+            binding.txtResult.text = it.toString()
+        })
 
         binding.btnSum.setOnClickListener{
-        val input = binding.edtNumber.text.toString()
-            if (input.isEmpty()){
-                Toast.makeText(this, "Tidak Boleh Kosong", Toast.LENGTH_SHORT).show()
-            }else{
-                binding.txtResult.text = viewModel.sumNumber(input.toInt()).toString()
-            }
+        viewModel.sumNumber(binding.edtNumber.text.toString().toInt())
 
     }
 }
