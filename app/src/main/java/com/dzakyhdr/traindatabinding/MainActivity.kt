@@ -17,15 +17,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         mainViewModelFactory = MainViewModelFactory(0)
         viewModel = ViewModelProvider(this, mainViewModelFactory).get(MainViewModel::class.java)
-
         viewModel.count.observe(this, {
-            binding.txtResult.text = it.toString()
+            binding.txtNumber.text = it.toString()
         })
 
-        binding.btnSum.setOnClickListener{
-        viewModel.sumNumber(binding.edtNumber.text.toString().toInt())
+        binding.btnNumber.setOnClickListener {
+            viewModel.countNumber()
+        }
 
+        binding.btnKurang.setOnClickListener {
+            viewModel.decrement()
+        }
     }
-}
 
 }
