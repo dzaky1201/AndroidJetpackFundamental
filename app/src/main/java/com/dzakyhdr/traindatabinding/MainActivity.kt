@@ -19,12 +19,6 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, mainViewModelFactory).get(MainViewModel::class.java)
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
-
-
-        binding.btnSum.setOnClickListener {
-            viewModel.sumNumber(binding.edtNumber.text.toString().toInt())
-
-        }
     }
 
 }

@@ -23,6 +23,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:ems="10"
+            android:text="@={viewmodel.inputText}"
             android:hint="input number"
             android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,16 +36,30 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Sum Number"
+            android:onClick="@{()->viewmodel.sumNumber()}"
             app:layout_constraintStart_toStartOf="@+id/edt_number"
             app:layout_constraintTop_toBottomOf="@+id/edt_number" />
 
         <TextView
             android:id="@+id/txt_result"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{String.valueOf(viewmodel.count)}"
+            android:textSize="23sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/btn_clear"
+            app:layout_constraintTop_toBottomOf="@+id/btn_clear" />
+
+        <Button
+            android:id="@+id/btn_clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textSize="23sp"
-            android:text="@{String.valueOf(viewmodel.count)}"
+            android:layout_marginTop="8dp"
+            android:onClick="@{()->viewmodel.clearValue()}"
+            android:text="Clear Value"
+            app:layout_constraintEnd_toEndOf="@+id/btn_sum"
             app:layout_constraintStart_toStartOf="@+id/btn_sum"
             app:layout_constraintTop_toBottomOf="@+id/btn_sum" />
     </androidx.constraintlayout.widget.ConstraintLayout>
